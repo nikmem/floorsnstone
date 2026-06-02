@@ -46,9 +46,8 @@
         let imgTimer = null;
 
         const n = cards.length;
-        const INACTIVE_W = 280;   // matches .service-card width in the CSS
-        // The track only slides on the desktop overlay layout; on small screens
-        // the panel is static and the cards scroll horizontally instead.
+        // On the desktop overlay the cards sit in fixed slots; on small screens
+        // they live in a horizontal scroller.
         const desktopSlider = window.matchMedia('(min-width: 861px)');
 
         // Preload every featured image so the crossfade never flashes a blank.
@@ -56,22 +55,6 @@
             const src = c.getAttribute('data-feature');
             if (src) { const img = new Image(); img.src = src; }
         });
-
-        function gapPx() {
-            const cs = getComputedStyle(cardsWrap);
-            return parseFloat(cs.columnGap || cs.gap) || 0;
-        }
-
-        // Position the track so the active card slides into the lead slot.
-        // Cards before the active one are inactive width, so the offset is exact.
-        function positionTrack() {
-            if (desktopSlider.matches) {
-                cardsWrap.style.transform =
-                    'translateX(' + (-active * (INACTIVE_W + gapPx())) + 'px)';
-            } else {
-                cardsWrap.style.transform = '';
-            }
-        }
 
         // Crossfade ONLY the featured image (fade out, swap, fade in).
         function crossfadeImage(src) {
@@ -88,6 +71,18 @@
             }, 300);   // matches the image opacity transition
         }
 
+        // On the mobile scroller, bring the active card into view so the change
+        // is visible right next to the controls.
+        function revealOnMobile() {
+            if (desktopSlider.matches) return;
+            const card = cards[active];
+            const left = cardsWrap.scrollLeft
+                + card.getBoundingClientRect().left
+                - cardsWrap.getBoundingClientRect().left
+                - (cardsWrap.clientWidth - card.offsetWidth) / 2;   // centre it
+            cardsWrap.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+        }
+
         function updateArrows() {
             prevBtn.classList.toggle('is-disabled', active === 0);
             nextBtn.classList.toggle('is-disabled', active === n - 1);
@@ -99,10 +94,11 @@
             const next = Math.max(0, Math.min(n - 1, i));   // clamp, no wrap
             if (next === active) return;
             active = next;
+            // Only the active card changes — every card keeps its slot.
             cards.forEach((c, idx) =>
                 c.classList.toggle('service-card--active', idx === active));
-            positionTrack();                                       // cards slide + grow
             crossfadeImage(cards[active].getAttribute('data-feature'));
+            revealOnMobile();
             updateArrows();
         }
 
@@ -110,11 +106,9 @@
         nextBtn.addEventListener('click', () => setActive(active + 1));
         cards.forEach((c, i) => c.addEventListener('click', () => setActive(i)));
 
-        // Initial state (no animation), and keep the track aligned on resize.
+        // Initial state (no animation).
         cards.forEach((c, idx) => c.classList.toggle('service-card--active', idx === 0));
-        positionTrack();
         updateArrows();
-        window.addEventListener('resize', positionTrack);
     }
 
     /* ---- Header background on scroll ---- */

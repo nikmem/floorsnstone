@@ -531,14 +531,10 @@ body.nav-open { overflow: hidden; }
     display: flex;
     gap: clamp(1rem, 1.6vw, 1.5rem);
     align-items: center;
-    overflow: hidden;
-    /* The whole row slides so the active card moves forward into the lead slot */
-    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+    overflow: visible;   /* let the active card scale up without being clipped */
 }
 
-/* Inactive cards: a smaller, equal box size.
-   Smoothly grow/shrink as the active card moves forward. */
+/* Cards keep a fixed slot and never move; only the active one scales up. */
 .service-card {
     flex: 0 0 auto;
     width: 280px;
@@ -550,9 +546,9 @@ body.nav-open { overflow: hidden; }
     border: 1.2px solid rgba(133, 94, 19, 0.1);   /* #855E13 @ 10% */
     padding: 1.35rem;
     cursor: pointer;
-    transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-                height 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-                padding 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .service-card__media {
     flex: 1 1 auto;
@@ -570,39 +566,25 @@ body.nav-open { overflow: hidden; }
     margin-top: 1.1rem;
 }
 
-/* Inactive card type */
+/* Card type (scales up with the card when active, matching the larger design) */
 .service-card__title {
     font-weight: 400;             /* Poppins */
     font-size: 22px;
     line-height: 50px;
     color: #302d28;
-    transition: font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-                line-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .service-card__desc {
     font-weight: 300;             /* Poppins Light */
     font-size: 12px;
     line-height: 17px;
     color: #000000;
-    transition: font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
-                line-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Active / featured card — larger box, straddles the image edge.
-   The active card is positioned at the lead slot by sliding the track in JS. */
+/* Active / featured card — scales up in place (340/280 ≈ 1.21) and lifts above
+   its neighbours, so the row stays put and only the active box changes. */
 .service-card--active {
-    width: 340px;
-    height: 402px;
-    padding: 1.75rem;
-}
-.service-card--active .service-card__title {
-    font-weight: 400;             /* Poppins Regular */
-    font-size: 26px;
-    line-height: 59px;
-}
-.service-card--active .service-card__desc {
-    font-size: 14px;
-    line-height: 20.3px;
+    transform: scale(1.214);
+    z-index: 2;
 }
 
 /* Slider arrows — square 60×60, anchored bottom-right of the showcase */

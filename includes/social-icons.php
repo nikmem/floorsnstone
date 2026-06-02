@@ -1,25 +1,26 @@
 <?php
-/* Inline social glyphs. Selected by $social['icon']; fill=currentColor so
-   each icon inherits the link colour (and its hover state). */
+/* Inline social glyphs — one balanced brand-mark set (same visual weight),
+   selected by $social['icon']. fill=currentColor so each inherits the link
+   colour and its hover state. Sizing/centring is handled in CSS. */
 switch ($social['icon']):
     case 'facebook': ?>
-        <svg class="social__ico" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h3l.5-3H13v-2c0-.6.4-1 1-1z"/>
+        <svg class="social__ico" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true">
+            <path d="M80 299.3V512h116V299.3h86.5l18-97.8H196v-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4.4 37 1.2V7.9C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4v42.1H14v97.8h66z"/>
         </svg>
     <?php break;
     case 'linkedin': ?>
-        <svg class="social__ico" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M6.94 7.5a1.94 1.94 0 1 1 0-3.88 1.94 1.94 0 0 1 0 3.88zM5.4 9h3.1v11.4H5.4V9zm5.3 0h2.97v1.56h.04c.41-.78 1.42-1.6 2.93-1.6 3.13 0 3.71 2.06 3.71 4.74v6.7h-3.1v-5.94c0-1.42-.02-3.24-1.97-3.24-1.98 0-2.28 1.54-2.28 3.13v6.05h-3.1V9z"/>
+        <svg class="social__ico" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true">
+            <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3z"/>
         </svg>
     <?php break;
     case 'x': ?>
-        <svg class="social__ico" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M18.24 3h3.3l-7.2 8.23L22.8 21h-6.62l-5.19-6.78L4.99 21H1.68l7.7-8.8L1.2 3h6.79l4.69 6.2L18.24 3zm-1.16 16h1.83L7.01 4.9H5.05L17.08 19z"/>
+        <svg class="social__ico" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true">
+            <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9zm-24.8 373.8h39.1L151.1 88h-42z"/>
         </svg>
     <?php break;
     case 'youtube': ?>
-        <svg class="social__ico" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.28 5 12 5 12 5s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.72 19 12 19 12 19s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3-5.2 3z"/>
+        <svg class="social__ico" viewBox="0 0 576 512" fill="currentColor" aria-hidden="true">
+            <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.1 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.1 337.6V175.2l142.7 81.2z"/>
         </svg>
     <?php break;
 endswitch;

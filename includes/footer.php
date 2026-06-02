@@ -45,20 +45,6 @@
                             Custom-capable flooring and stone for the GCs and builders. WBE/MBE certified.
                             Six states covered.
                         </p>
-
-                        <div class="contact__meta">
-                            <p class="contact__copy">&copy; <?= date('Y') ?> All Rights Reserved</p>
-                            <ul class="social">
-                                <?php foreach ($SOCIAL_LINKS as $social): ?>
-                                    <li>
-                                        <a class="social__link" href="<?= htmlspecialchars($social['href']) ?>"
-                                           aria-label="<?= htmlspecialchars($social['label']) ?>">
-                                            <?php include __DIR__ . '/social-icons.php'; ?>
-                                        </a>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
@@ -117,6 +103,21 @@
                             <span>SUBMIT</span>
                         </button>
                     </form>
+                </div>
+
+                <!-- Copyright + social (under the brand on desktop, below the form on mobile) -->
+                <div class="contact__meta">
+                    <p class="contact__copy">&copy; <?= date('Y') ?> All Rights Reserved</p>
+                    <ul class="social">
+                        <?php foreach ($SOCIAL_LINKS as $social): ?>
+                            <li>
+                                <a class="social__link" href="<?= htmlspecialchars($social['href']) ?>"
+                                   aria-label="<?= htmlspecialchars($social['label']) ?>">
+                                    <?php include __DIR__ . '/social-icons.php'; ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -512,7 +512,9 @@ body.nav-open { overflow: hidden; }
     aspect-ratio: 873 / 627;      /* exact source proportion — no crop */
     object-fit: cover;
     display: block;
+    transition: opacity 0.3s ease;   /* crossfade in sync with the card row */
 }
+.services__feature img.is-fading { opacity: 0; }
 
 /* Slider panel floats over the image; the active box straddles its right edge
    (image is 64% wide, active box is 340px → start half a box-width before 64%).
@@ -530,9 +532,12 @@ body.nav-open { overflow: hidden; }
     gap: clamp(1rem, 1.6vw, 1.5rem);
     align-items: center;
     overflow: hidden;
+    transition: opacity 0.3s ease;   /* crossfade the whole card row on change */
 }
+.services__cards.is-fading { opacity: 0; }
 
-/* Inactive cards: a smaller, equal box size */
+/* Inactive cards: a smaller, equal box size.
+   Smoothly grow/shrink as the active card changes. */
 .service-card {
     flex: 0 0 auto;
     width: 280px;
@@ -543,6 +548,7 @@ body.nav-open { overflow: hidden; }
     background: #ffffff;
     border: 1.2px solid rgba(133, 94, 19, 0.1);   /* #855E13 @ 10% */
     padding: 1.35rem;
+    cursor: pointer;
 }
 .service-card__media {
     flex: 1 1 auto;
@@ -862,14 +868,31 @@ body.nav-open { overflow: hidden; }
     padding-block: var(--section-pad);   /* same rhythm as every other section */
 }
 
-/* Two columns: info on the left, form on the right */
+/* Layout: single column on mobile (info → form → copyright/social),
+   two columns on desktop (info+meta stacked left, form spanning the right). */
 .contact__grid {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-areas:
+        "info"
+        "form"
+        "meta";
     gap: clamp(2.5rem, 5vw, 4.5rem);
 }
+.contact__info      { grid-area: info; }
+.contact__form-wrap { grid-area: form; }
+.contact__meta      { grid-area: meta; }
+
 @media (min-width: 900px) {
-    .contact__grid { grid-template-columns: 1fr 1fr; align-items: start; }
+    .contact__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "info form"
+            "meta form";
+        align-items: start;
+        column-gap: clamp(2.5rem, 5vw, 4.5rem);
+        row-gap: 2rem;
+    }
 }
 
 /* --- Left column --- */
@@ -943,17 +966,18 @@ body.nav-open { overflow: hidden; }
     color: rgba(48, 45, 40, 0.7);
 }
 
-/* Social icons */
+/* Social icons — each glyph centred in an equal square so the row reads evenly */
 .social {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.85rem;
 }
 .social__link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     color: #906d22;
     transition: color var(--transition), transform var(--transition);
 }
@@ -961,11 +985,10 @@ body.nav-open { overflow: hidden; }
     color: #302d28;
     transform: translateY(-2px);
 }
-/* Uniform glyph size, all aligned on one line regardless of source aspect */
 .social__ico {
     display: block;
     width: auto;
-    height: 20px;
+    height: 19px;          /* equal optical height; width follows each mark */
 }
 
 /* --- Right column: form --- */

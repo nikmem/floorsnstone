@@ -1,0 +1,12 @@
+# Editor / tooling local settings
+.claude/
+.vscode/
+.idea/
+
+# OS cruft
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Logs
+*.log

@@ -53,15 +53,17 @@ $pageDescription = $pageDescription ?? SITE_TAGLINE;
                 <span class="nav-toggle__bar"></span>
             </button>
         </div>
-
-        <!-- Mobile slide-in menu -->
-        <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
-            <ul class="mobile-nav__list">
-                <?php foreach ($NAV_LINKS as $link): ?>
-                    <li><a class="mobile-nav__link" href="<?= htmlspecialchars($link['href']) ?>"><?= htmlspecialchars($link['label']) ?></a></li>
-                <?php endforeach; ?>
-            </ul>
-        </nav>
     </header>
+
+    <!-- Mobile slide-in menu — kept OUTSIDE <header> so its position:fixed is
+         relative to the viewport. (The scrolled header uses backdrop-filter,
+         which would otherwise become the containing block and clip this.) -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+        <ul class="mobile-nav__list">
+            <?php foreach ($NAV_LINKS as $link): ?>
+                <li><a class="mobile-nav__link" href="<?= htmlspecialchars($link['href']) ?>"><?= htmlspecialchars($link['label']) ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
 
     <main id="main">

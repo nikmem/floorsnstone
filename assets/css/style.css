@@ -532,12 +532,13 @@ body.nav-open { overflow: hidden; }
     gap: clamp(1rem, 1.6vw, 1.5rem);
     align-items: center;
     overflow: hidden;
-    transition: opacity 0.3s ease;   /* crossfade the whole card row on change */
+    /* The whole row slides so the active card moves forward into the lead slot */
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
 }
-.services__cards.is-fading { opacity: 0; }
 
 /* Inactive cards: a smaller, equal box size.
-   Smoothly grow/shrink as the active card changes. */
+   Smoothly grow/shrink as the active card moves forward. */
 .service-card {
     flex: 0 0 auto;
     width: 280px;
@@ -549,6 +550,9 @@ body.nav-open { overflow: hidden; }
     border: 1.2px solid rgba(133, 94, 19, 0.1);   /* #855E13 @ 10% */
     padding: 1.35rem;
     cursor: pointer;
+    transition: width 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .service-card__media {
     flex: 1 1 auto;
@@ -572,16 +576,20 @@ body.nav-open { overflow: hidden; }
     font-size: 22px;
     line-height: 50px;
     color: #302d28;
+    transition: font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                line-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .service-card__desc {
     font-weight: 300;             /* Poppins Light */
     font-size: 12px;
     line-height: 17px;
     color: #000000;
+    transition: font-size 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                line-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Active / featured card — larger box, straddles the image edge.
-   Display order is rotated in JS so the active card always leads. */
+   The active card is positioned at the lead slot by sliding the track in JS. */
 .service-card--active {
     width: 340px;
     height: 402px;

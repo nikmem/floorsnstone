@@ -183,15 +183,14 @@ require __DIR__ . '/includes/header.php';
             <div class="fab-list">
                 <?php
                 $fabItems = [
-                    'Stone fabrication and installation',
-                    'Countertop installation',
-                    'Custom cutting &amp; design',
-                    'Mosaics',
-                    'Bullnose edging',
-                    'Thresholds',
+                    'Stone fabrication and installation' => 'Slab to set, all under one roof. We template, cut, and install granite, quartz, and marble so every seam, overhang, and edge lines up the way the drawing called for.',
+                    'Countertop installation' => 'Kitchens, vanities, and commercial surfaces measured on site and dry-fit before they ever leave the shop &mdash; so install day is clean, level, and on schedule.',
+                    'Custom cutting &amp; design' => 'Sinks, cooktops, radius corners, and one-off profiles cut to spec. If you can spec it, we can fabricate it to tolerance.',
+                    'Mosaics' => 'Detailed mosaic and inlay work for floors, walls, and feature surfaces &mdash; laid out and dry-set so the pattern reads true before it&rsquo;s ever fixed.',
+                    'Bullnose edging' => 'Clean, consistent bullnose and finished edges on stair treads, thresholds, and countertops, profiled and polished in-house.',
+                    'Thresholds' => 'Custom stone thresholds and transitions cut to your openings &mdash; the right height, the right finish, no gaps between materials.',
                 ];
-                $fabText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec finibus neque vitae ligula malesuada pharetra. Morbi ultricies eget arcu ullamcorper sagittis.';
-                foreach ($fabItems as $item):
+                foreach ($fabItems as $item => $fabText):
                 ?>
                     <div class="fab-row">
                         <h3 class="fab-row__title"><?= $item ?></h3>
@@ -234,10 +233,11 @@ require __DIR__ . '/includes/header.php';
                 <div class="why-col">
                     <h3 class="why-col__title">Quality You Can Stand On</h3>
                     <p class="why-col__text">
-                        Tight tolerances, in-house fabrication, and crews with 25+ of experience who
-                        knows and understands the process of your needs. Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit. Praesent sit amet facilisis risus. Integer
-                        malesuada odio nulla, hendrerit.
+                        Tight tolerances, in-house fabrication, and crews with 25+ years of experience
+                        who know and understand the process of your needs. From subfloor prep to the
+                        final polished edge, we control every step so the finished work holds up to the
+                        daily wear it was built for &mdash; and looks the way you spec&rsquo;d it years
+                        down the road.
                     </p>
                 </div>
 
@@ -254,10 +254,11 @@ require __DIR__ . '/includes/header.php';
                 <div class="why-col">
                     <h3 class="why-col__title">WBE/MBE Certified</h3>
                     <p class="why-col__text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet
-                        facilisis risus. Integer malesuada odio nulla, hendrerit. Lorem ipsum dolor
-                        sit amet, consectetur adipiscing elit. Praesent sit amet facilisis risus.
-                        Integer malesuada odio nulla, hendrerit,
+                        Floors &amp; Stone is a women-owned business, certified as both a Women&rsquo;s
+                        Business Enterprise (WBE) and Minority Business Enterprise (MBE). That makes us
+                        a partner you can count toward diversity and inclusion goals on public and
+                        private projects &mdash; without giving up an ounce of the quality or
+                        accountability your job demands.
                     </p>
                 </div>
             </div>
